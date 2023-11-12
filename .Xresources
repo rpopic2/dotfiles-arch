@@ -1,0 +1,5 @@
+Xft.dpi: 128
+xterm*faceName: JetBrains Mono
+xterm*faceSize: 14
+xterm*foreground: white
+xterm*background: black
