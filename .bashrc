@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 PS1='\u@\h \w\$ '
-# printf '\e[?112c\e[5 q'
+printf '\e[?112c\e[5 q'
 
 export EDITOR=nvim
 export VISUAL=nvim

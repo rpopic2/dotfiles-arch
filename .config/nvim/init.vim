@@ -6,6 +6,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'rpopic2/authentic-gh.vim'
 Plug 'rpopic2/nvim-cursorline'
 Plug 'preservim/tagbar'
+Plug 'mbbill/undotree'
 call plug#end()
 
 set clipboard+=unnamedplus
@@ -15,9 +16,14 @@ set expandtab
 set shiftwidth=4
 
 set list listchars=trail:·
-set colorcolumn=80
+set colorcolumn=81
+set updatetime=500
 
+"emacs style mappings
 imap <c-d> <del>
+imap <c-f> <right>
+imap <c-b> <left>
+
 map <space><space> :
 map <space>w :w<cr>
 map <space>t :tabnew<cr>
@@ -27,13 +33,21 @@ map <space>m :tabmove
 
 map <space>f :Files<cr>
 map <space>g :GitFiles<cr>
+map <space>/ :Lines<cr>
+map <c-k> :Man<cr>
 
-let &t_SI = "\e[5 q"
-let &t_EI = "\e[2 q"
+source ~/.config/nvim/lsp.lua
 
-aug csharp
-        au!
-        au BufEnter *.{cs} source ~/.config/nvim/lsp.lua
+aug on_lsp_attach
+    au!
+    "au LspAttach * :au! CursorHoldI * call feedkeys("\<c-x>\<c-o>")
+    "au CompleteDone * :pc
+    "au LspAttach * imap <c-i> <c-x><c-o>
 aug end
 
-hi colorcolum ctermfg=red
+hi ColorColumn ctermfg=red ctermbg=none
+hi TabLine cterm=none
+hi TabLineSel cterm=underline
+hi Pmenu ctermbg=grey
+hi Comment ctermfg=grey
+
